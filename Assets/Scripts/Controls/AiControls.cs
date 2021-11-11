@@ -9,9 +9,9 @@ public class AiControls : BaseControls
     private Vector2 _direction = new Vector2();
 
     private float _timer = 0;
-
-    private const float _resetTimerTime = 1000;
-    private const float _shootTimerTime = 700;
+    private float _shootTimer = 0;
+    private const float _resetTimerTime = 0.6f;
+    private const float _shootTimerTime = 0.8f;
 
     private void Awake()
     {
@@ -19,15 +19,18 @@ public class AiControls : BaseControls
         BotChangeDirection();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        _timer += Time.fixedDeltaTime;
+        _shootTimer += Time.fixedDeltaTime;
+
         MoveKeyHandler();
         ShootKeyHandler();
     }
 
     private void MoveKeyHandler()
     {
-        _timer += Time.time;
+        
 
         if (_timer > _resetTimerTime)
         {
@@ -39,37 +42,38 @@ public class AiControls : BaseControls
 
     private void BotChangeDirection()
     {
-        int num = Random.Range(0, 41);
-        if (num < 10)
+        int num = Random.Range(0, 100);
+        if (num < 30)
         {
             _direction.x = 1;
             _direction.y = 0;
         }
-        else if (num > 10 && num < 21)
+        else if (num > 30 && num < 61)
         {
             _direction.x = -1;
             _direction.y = 0;
         }
         else if (tank.transform.position.y > 1.5f)
         {
-            if (num > 20 && num < 31)
+            if (num > 60 && num < 91)
             {
-                _direction.y = 0;
-                _direction.x = 1;
+                _direction.x = 0;
+                _direction.y = -1;
             }
             else
             {
                 _direction.x = 0;
-                _direction.y = -1;
+                _direction.y = 1;
             }
         }
     }
 
     private void ShootKeyHandler()
     {
-        if (_timer > _shootTimerTime)
+        if (_shootTimer > _shootTimerTime)
         {
             ShootHandler();
+            _shootTimer = 0;
         }
        
     }

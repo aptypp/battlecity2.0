@@ -6,13 +6,15 @@ public class MapGenerator : MonoBehaviour
 {
     [SerializeField] private Vector2Int _mapSize;
 
+    [SerializeField] private BotSpawner _botSpawner;
+
     public Vector2Int MapSize { get => _mapSize; }
 
     [SerializeField] private BorderBlock _borderPrefab;
     [SerializeField] private BrickBlock _brickPrefab;
     [SerializeField] private GameObject _towerPrefab;
-    [SerializeField] private BotSpawner _botSpawnerPrefab;
-    [SerializeField] private List<BaseBonus> _bonuses;
+    [SerializeField] private BotSpawnPoint _botSpawnPointPrefab;
+    
 
     private float _timer;
     [SerializeField] private const float _bonusTime = 10000;
@@ -30,35 +32,21 @@ public class MapGenerator : MonoBehaviour
         GenerateMap();
     }
 
-    private void Update()
+    private void InstantiateBotSpawnPoint(Vector3 position)
     {
-        _timer += Time.time;
-        if(_timer > _bonusTime)
-        {
-            SpawnBonus();
-            _timer = 0;
-        }
+        GameObject temp = Instantiate(_botSpawnPointPrefab.gameObject, position, Quaternion.identity);
+        _botSpawner.AddSpawnPoint(temp.GetComponent<BotSpawnPoint>());
     }
-
-    private void SpawnBonus()
-    {
-        Vector3 newPosition = new Vector3();
-        newPosition.x = Random.Range(1, _mapSize.x - 1);
-        newPosition.y = Random.Range(3, _mapSize.y - 1);
-
-        int num = Random.Range(0, _bonuses.Count);
-
-        Instantiate(_bonuses[num].gameObject, newPosition, Quaternion.identity);
-    }
-
 
     //тут будет страшно
     public void GenerateMap()
     {
         Instantiate(_towerPrefab, new Vector3(_mapSize.x/2 - 1, 1, 0), Quaternion.identity);
-        Instantiate(_botSpawnerPrefab.gameObject, new Vector3(1, _mapSize.y - 2, 0), Quaternion.identity);
-        Instantiate(_botSpawnerPrefab.gameObject, new Vector3(_mapSize.x/2, _mapSize.y - 2, 0), Quaternion.identity);
-        Instantiate(_botSpawnerPrefab.gameObject, new Vector3(_mapSize.x - 2, _mapSize.y - 2, 0), Quaternion.identity);
+
+        InstantiateBotSpawnPoint(new Vector3(1, _mapSize.y - 2, 0));
+        InstantiateBotSpawnPoint(new Vector3(_mapSize.x / 2, _mapSize.y - 2, 0));
+        InstantiateBotSpawnPoint(new Vector3(_mapSize.x - 2, _mapSize.y - 2, 0));
+
         for (int i = 0; i < _mapSize.y; i++)
         {
             for (int j = 0; j < _mapSize.x; j++)

@@ -30,17 +30,17 @@ public class Bullet : MonoBehaviour
         _moveDirection = direction;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
     }
 
     private void Move()
     {
-        _rigidbody.MovePosition((Vector2)transform.position + _moveDirection * _speed * Time.deltaTime);
+        _rigidbody.MovePosition((Vector2)transform.position + _moveDirection * _speed * Time.fixedDeltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         BaseBlock block = collision.transform.GetComponent<BaseBlock>();
 
@@ -63,7 +63,8 @@ public class Bullet : MonoBehaviour
 
         if (playerTank != null)
         {
-            if (_owner.GetType() == typeof(BotTank))
+            BotTank tempTank = _owner.GetComponent<BotTank>();
+            if (tempTank != null)
             {
                 playerTank.TakeDamage();
             }
@@ -75,6 +76,14 @@ public class Bullet : MonoBehaviour
         {
             tower.Destruct();
         }
+
+        BaseBonus bonus = collision.transform.GetComponent<BaseBonus>();
+
+        if (bonus != null)
+        {
+            return;
+        }
+
         Destroy(gameObject);
     }
 }

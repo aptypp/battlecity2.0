@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8936289268258358710}
   - component: {fileID: 8936289268258358711}
-  - component: {fileID: 5454600354064229135}
   m_Layer: 0
   m_Name: TankSprite
   m_TagString: Untagged
@@ -85,32 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5454600354064229135
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8936289268258358713}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &8936289268616325197
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +179,7 @@ GameObject:
   - component: {fileID: 5454600353345822349}
   - component: {fileID: -5058324873472797411}
   - component: {fileID: 1223861710522731835}
+  - component: {fileID: 1414193621792134625}
   m_Layer: 0
   m_Name: FastBotTank
   m_TagString: Untagged
@@ -242,8 +216,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_LinearDrag: 1000
+  m_AngularDrag: 1000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -276,10 +250,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthPoint: 1
-  _speed: 14
+  _speed: 12
   _bulletPrefab: {fileID: 7426870848036407426, guid: 180e94d618d441f4eb46e3c63b8b6071, type: 3}
   _rigidbody: {fileID: 5454600353345822349}
   _bulletSpawnPosition: {fileID: 7985326886176855319}
+  _bonuses:
+  - {fileID: 4051537219222264486, guid: 5241322b6d810694f9c189d0ef0c6bad, type: 3}
+  - {fileID: 1027339022773384950, guid: cd6dbbe5d2fe60746b3464e8fdc15c66, type: 3}
+--- !u!61 &1414193621792134625
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936289268985165881}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &9217854342920604583
 GameObject:
   m_ObjectHideFlags: 0

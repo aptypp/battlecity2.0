@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9138041697038636502}
-  - component: {fileID: 9138041697038636501}
+  - component: {fileID: 6910777553587876706}
   m_Layer: 0
-  m_Name: BotSpawner
+  m_Name: BotSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9138041697038636501
+--- !u!114 &6910777553587876706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,11 +40,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9138041697038636500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3863a5b7bdec0f4f95b5524bc8978bd, type: 3}
+  m_Script: {fileID: 11500000, guid: bc09688f5c7d69749ab1878fa83c5320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _botCount: 5
-  _botTankPrefabs:
-  - {fileID: 8936289268985165880, guid: 113958e0ff0f6b345943e62838d50507, type: 3}
-  - {fileID: 1223861710522731835, guid: 21d2d5c79ed264f4e98f2fc14a7d1afa, type: 3}
-  - {fileID: 4700199901247324662, guid: 64ff05582461de54cbf896b48c811478, type: 3}

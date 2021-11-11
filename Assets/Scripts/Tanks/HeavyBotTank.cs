@@ -8,5 +8,6 @@ public class HeavyBotTank : BotTank
     {
         Destroy(gameObject);
         _playerStats.AddScore(500);
+        TrySpawnBonus();
     }
 }

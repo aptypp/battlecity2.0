@@ -8,5 +8,6 @@ public class FastBotTank : BotTank
     {
         Destroy(gameObject);
         _playerStats.AddScore(250);
+        TrySpawnBonus();
     }
 }

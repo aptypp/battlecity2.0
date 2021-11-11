@@ -8,6 +8,8 @@ public class PlayerTank : BaseTank
     public override void Death()
     {
         _gameOverUi.OpenGameOverUi();
+        _gameOverUi.SetLoseText();
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,6 +24,10 @@ public class PlayerTank : BaseTank
 
     public void SpeedUp(float bonus)
     {
+        if (_speed > 10)
+        {
+            return;
+        }
         StartCoroutine(ChangeSpeed(bonus));
     }
 

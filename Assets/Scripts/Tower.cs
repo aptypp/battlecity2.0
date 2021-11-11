@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    private GameOverUI _gameOverPanel;
+    private GameOverUI _gameOverUi;
 
     private void Start()
     {
-        _gameOverPanel = FindObjectOfType<GameOverUI>();
+        _gameOverUi = FindObjectOfType<GameOverUI>();
     }
     public void Destruct()
     {
-        _gameOverPanel.OpenGameOverUi();
+        _gameOverUi.OpenGameOverUi();
+        _gameOverUi.SetLoseText();
     }
 }

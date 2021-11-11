@@ -12,7 +12,7 @@ public abstract class BaseTank : MonoBehaviour
 
     protected PlayerStats _playerStats;
 
-    protected Vector2 _direction;
+    protected Vector2 _moveDirection;
 
     protected Bullet _currentBullet;
 
@@ -21,27 +21,27 @@ public abstract class BaseTank : MonoBehaviour
 
     private void Start()
     {
-        _direction = transform.up;
+        _moveDirection = transform.up;
         _playerStats = FindObjectOfType<PlayerStats>();
     }
 
     public void Move(Vector2 direction)
     {
-        _direction = direction;
+        _moveDirection = direction;
         Rotate();
-        _rigidbody.MovePosition((Vector2)transform.position + _direction * _speed * Time.deltaTime);
+        _rigidbody.MovePosition((Vector2)transform.position + _moveDirection * _speed * Time.fixedDeltaTime);
     }
 
     protected void Rotate()
     {
         float angle = 0;
-        if(_direction.x != 0)
+        if(_moveDirection.x != 0)
         {
-            angle = -90 * _direction.x;
+            angle = -90 * _moveDirection.x;
         }
-        if(_direction.y != 0)
+        if(_moveDirection.y != 0)
         {
-            angle = 90 * (1  - _direction.y);
+            angle = 90 * (1  - _moveDirection.y);
         }
         
         transform.eulerAngles = new Vector3(0, 0, angle);
@@ -56,7 +56,7 @@ public abstract class BaseTank : MonoBehaviour
 
         _currentBullet = Instantiate(_bulletPrefab, _bulletSpawnPosition.position, Quaternion.identity);
         _currentBullet.SetOwner(this);
-        _currentBullet.SetMoveDirection(_direction);
+        _currentBullet.SetMoveDirection(_moveDirection);
     }
 
     public void TakeDamage()

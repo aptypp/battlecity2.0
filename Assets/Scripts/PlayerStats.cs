@@ -42,7 +42,7 @@ public class PlayerStats : MonoBehaviour
         _healthPoint = _playerTank.HealthPoint;
         foreach(BotSpawner spawner in _botSpawner)
         {
-            _enemiesCount += spawner.BotCount;
+            _enemiesCount += spawner.AliveBotsCount();
         }
     }
 
@@ -54,6 +54,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         _gameOverUi.OpenGameOverUi();
+        _gameOverUi.SetWinText();
     }
 
     public void AddScore(int score)
